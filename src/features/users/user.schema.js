@@ -1,7 +1,13 @@
 import mongoose from 'mongoose'
 //name,gender,email,password
 export const userSchema = mongoose.Schema({
-    name: { type: String, required: [true, 'Name of the User is required'] },
+    name: { 
+        type: String, required: [true, 'Name of the User is required']
+     },
+    username: {
+        type: String,
+        unique: [true, 'The username should be unique']
+    },
     gender: {
         type: String, required: [true, 'Gender of the User is required'],
         enum: ['Male', 'Female', 'Prefer Not to Say']
@@ -34,9 +40,16 @@ export const userSchema = mongoose.Schema({
 
 })
 export const deviceSchema = mongoose.Schema({
-    name: { type: String, required: true },
-    inTime: { type: String },// time when login has occured
-    outTime: { type: String, default: 'Not Mentioned' }//time when logout has occured
+    name: { 
+        type: String, 
+        required: true 
+    },
+    inTime: {
+         type: String
+         },// time when login has occured
+    outTime: {
+         type: String,
+          default: 'Not Mentioned' }//time when logout has occured
 }).pre('save', (next) => {
     console.log('device data is being saved');
     next();
