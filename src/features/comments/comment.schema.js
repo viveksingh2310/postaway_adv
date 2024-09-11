@@ -16,7 +16,7 @@ export const commentSchema = mongoose.Schema(
             required: [true, 'There should be a PostId for the comment as well']
         },
         likes:[
-            {
+            {   required:false,
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'Like',
                 on_model:'Comment'

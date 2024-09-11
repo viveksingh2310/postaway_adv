@@ -1,7 +1,7 @@
 import Router from 'express'
-export const CommentRouter=Router();
-CommentRouter.get('/:postId',);
-CommentRouter.post('/:postId',);
-CommentRouter.delete('/:commentId',);
-CommentRouter.put('/:commentId',);
-
+import CommentController from './comment.controller.js'
+export const CommentRouter=Router()
+CommentRouter.get('/:postId',CommentController.getComments)
+CommentRouter.post('/:postId',CommentController.addComment)
+CommentRouter.delete('/:commentId',CommentController.deleteComment)
+CommentRouter.put('/:commentId',CommentController.updateComment)
