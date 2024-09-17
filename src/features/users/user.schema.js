@@ -1,18 +1,18 @@
 import mongoose from 'mongoose'
 //name,gender,email,password
 export const userSchema = mongoose.Schema({
-    name: { 
+    name: { //req
         type: String, required: [true, 'Name of the User is required']
      },
-    username: {
+    username: {//uniqu
         type: String,
         unique: [true, 'The username should be unique']
     },
-    gender: {
+    gender: {//req
         type: String, required: [true, 'Gender of the User is required'],
         enum: ['Male', 'Female', 'Prefer Not to Say']
     },
-    email: {
+    email: {//req and unique with validation
         type: String, unique: true, required: [true, 'Email of the User is required'],
         validate: {
             validator: function (value) {
@@ -21,7 +21,7 @@ export const userSchema = mongoose.Schema({
             message: 'The Email should be unique and valid account of the User'
         }
     },
-    password: {
+    password: {//req
         type: String,
         required: [true, 'The Password of the User is required']
     },
@@ -49,7 +49,8 @@ export const deviceSchema = mongoose.Schema({
          },// time when login has occured
     outTime: {
          type: String,
-          default: 'Not Mentioned' }//time when logout has occured
+          default: 'Not Mentioned',
+        required:false }//time when logout has occured
 }).pre('save', (next) => {
     console.log('device data is being saved');
     next();
@@ -62,8 +63,8 @@ export const loginSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     },
-    deviceId: {
+    deviceId:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Device'
-    }
+    }]
 })
