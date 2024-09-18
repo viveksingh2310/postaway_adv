@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 //name,gender,email,password
-export const userSchema = mongoose.Schema({
+export const userSchema = mongoose.Schema({// the user shuld also containe the array of the posts as well
     name: { //req
         type: String, required: [true, 'Name of the User is required']
      },
