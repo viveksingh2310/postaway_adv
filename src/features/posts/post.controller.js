@@ -23,6 +23,7 @@ export default class PostController {
     static async createPost(req, res) {
         // const {caption,userId,date,location,tags,likes,comments}=req.body;
         const result = await PostRepository.createPost(req.body);
+        
         if (result)
             return res.status(200).send(result)
         return res.status(400).send('a bad request is being made to create a post')
