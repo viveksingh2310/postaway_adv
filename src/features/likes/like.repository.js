@@ -3,7 +3,7 @@ import { likeSchema } from './like.schema.js'
 export const LikeModel = mongoose.model('likerepository', likeSchema)
 export default class LikeRepository {
     static async getLikes(userId) {
-        const result = await LikeModel.findOne(userId)
+        const result = await LikeModel.find(userId)
         return result.likeable;
     }
     static async toggleLikes(userId, itemId, type) {
@@ -18,7 +18,7 @@ export default class LikeRepository {
           {// this is the updation part of the array
             $cond: {
                 $if: {
-                    $likeable[on_model]: { $eq: type }
+                    // $likeable[on_model]: { $eq: type }
                 },
                 $then: {
                     $if: {

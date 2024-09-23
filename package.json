@@ -1,7 +1,7 @@
 {
   "name": "postaway_adv",
   "version": "1.0.0",
-  "type":"module",
+  "type": "module",
   "description": "this project is made with mongoose, express and nodejs",
   "main": "index.js",
   "scripts": {
@@ -13,5 +13,8 @@
     "dot-env": "^0.0.1",
     "express": "^4.19.2",
     "mongoose": "^8.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.6"
   }
 }

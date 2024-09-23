@@ -8,32 +8,30 @@ export default class FriendRepository{
         if(user)
             return user.friends;
     }
-    static async toggleFriendship(userId,friendId){
-
-        const friend=await FriendModel.updateMany(userId,
-            {
-             $cond:{
-                $if:{
-                    $friends:{$contains:friendId}
-                },
-                $then:{
-                   $if:{
-                    $eq:{
-                    $friends[friendId].status:'Unfriend'}
-                   },
-                   $then:{
-                    $set:{
-                        $friends[friendId].status:'Friend'}
-                    },
-                    $else:{
-                      $set:{
-                        $friends[friendId].status:'Unfriend'}
-                    }  
-                    },
-                   }
-                }
-            );
-             }//function ending is here only
+    static async toggleFriendship(userId, friendId) {
+        // Find the user document
+        const user = await FriendModel.findById(userId);
+    
+        if (user) {
+            // Find the friend in the user's friends list
+            const friend = user.friends.find(f => f._id.equals(friendId));
+    
+            if (friend) {
+                // Toggle the status between 'Friend' and 'Unfriend'
+                friend.status = friend.status === 'Friend' ? 'Unfriend' : 'Friend';
+            } else {
+                // If friend is not in the list, add them as a new friend with status 'Friend'
+                user.friends.push({ _id: friendId, status: 'Friend' });
+            }
+    
+            // Save the updated user document
+            await user.save();
+            return user;
+        } else {
+            throw new Error("User not found");
+        }
+    }
+    //function ending is here only
     static async responseRequest(userId,friendId,response){
         const result=this.getPendingRequest(userId);
         if(result.contains(friendId))

@@ -5,3 +5,4 @@ CommentRouter.get('/:postId',CommentController.getComments)
 CommentRouter.post('/:postId',CommentController.addComment)
 CommentRouter.delete('/:commentId',CommentController.deleteComment)
 CommentRouter.put('/:commentId',CommentController.updateComment)
+export default CommentRouter

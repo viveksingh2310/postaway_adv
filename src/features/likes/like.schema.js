@@ -5,19 +5,19 @@ export const likeSchema=mongoose.Schema(
             type:mongoose.Schema.Types.ObjectId,
             ref:'User'
         },//a user can like both comment or post
-        likeable:[
+    likeable:[
             {
             type:mongoose.Schema.Types.ObjectId,
-            refPath:on_model,
+            refPath:'on_model',
             status:{
                 type:String,
                 enum:['liked','unliked']
+            }, 
             }
-        }
-    ],
-        on_model:{
-            type:String,
-            required:true,
-            enum:['Post','Comment']
+        ],
+            on_model:{
+                type:String,
+                required:true,
+                enum:['Post','Comment']
         }
     } )

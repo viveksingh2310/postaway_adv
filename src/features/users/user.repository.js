@@ -6,6 +6,8 @@ const DeviceModel = mongoose.model('devicemodel', deviceSchema)
 const LoginModel = mongoose.model('loginschema', loginSchema)
 export default class UserRepository {
     static async registerUser(user) {
+        if(user.avatarPath)
+            user.avatarPath=user.avatarPath.replace('/',"\\");//here replacement is important to store the path to the db as it will generate error
         const newUser = new UserModel(user);
         return await newUser.save();
     }

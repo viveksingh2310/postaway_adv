@@ -33,8 +33,6 @@ export const postSchema = mongoose.Schema(
                 type:mongoose.Schema.Types.ObjectId,
                 ref:'Comment',//all the detials of the commentor would be available but only the username and the likes on the comments are useful in the present conetext.
             },
-
         ]
-
     }
 )

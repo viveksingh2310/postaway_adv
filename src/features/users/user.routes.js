@@ -7,4 +7,5 @@ UserRouter.post('/logout',UserController.logOut)
 UserRouter.post('/logout-all-devices',UserController.logOutAllDev)
 UserRouter.get('/get-all',UserController.getAllUsers)
 UserRouter.get('/get-details:userId',UserController.getUserDetails)
-UserRouter.update('/update-details:userId',UserController.updateUser)
+UserRouter.patch('/update-details:userId',UserController.updateUser)
+export default UserRouter

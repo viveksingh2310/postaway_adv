@@ -7,3 +7,4 @@ PostRouter.get('/',PostController.getPosts);//get all post of tshe specific user
 PostRouter.post('/',PostController.createPost);//create a new post
 PostRouter.delete('/:postId',PostController.deletePost);//delete a specific post
 PostRouter.put('/:postId',PostController.updatePost);//update a specific post
+export default PostRouter;

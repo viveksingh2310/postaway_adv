@@ -1,8 +1,9 @@
 import LikeRepository from "./like.repository.js";
 export default class LikeController{
 static async getLikes(req,res){
-    const id=req.param;
-    const result=LikeRepository.getLikes(id);
+    const {id}=req.params;
+    console.log('thossssssssiiiiiiiss is hte eeee iddd'+id);
+    const result=await LikeRepository.getLikes(id);
     if(result)
         return res.status(200).send(result)
     else return res.status(400).send('The userId does not exist or you have sent a bad request to the server')
