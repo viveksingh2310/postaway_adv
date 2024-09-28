@@ -21,6 +21,6 @@ app.use('/api/comments',CommentRouter)
 app.use('/api/likes',LikeRouter)
 app.use('/api/post',PostRouter)
 app.use('/api/friend',FriendRouter)
-app.listen(4000,()=>{
+app.listen(10000,()=>{
     console.log('the server is running on port number 4000');
 })
