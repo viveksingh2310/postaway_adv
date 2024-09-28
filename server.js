@@ -6,8 +6,7 @@ import PostRouter from './src/features/posts/post.routes.js';
 import FriendRouter from './src/features/friendRequests/friend.routes.js';
 import LikeRouter from './src/features/likes/like.routes.js';
 try{
-   await mongoose.connect('mongodb://127.0.0.1:27017/postaway',{useNewUrlParser:true,
-    useUnifiedTopology:true});
+   await mongoose.connect('mongodb://127.0.0.1:27017/postaway');
     console.log('the mongoose is successfully connected to the database.')
 }catch(err){
     console.log('Error while connecting to database from mongoose')
