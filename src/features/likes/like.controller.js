@@ -2,7 +2,7 @@ import LikeRepository from "./like.repository.js";
 export default class LikeController{
 static async getLikes(req,res){
     const {id}=req.params;
-    console.log('thossssssssiiiiiiiss is hte eeee iddd'+id);
+    console.log('this is the id of the like'+id);
     const result=await LikeRepository.getLikes(id);
     if(result)
         return res.status(200).send(result)

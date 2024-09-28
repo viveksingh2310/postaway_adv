@@ -1,31 +1,44 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+
 export const friendSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: true
     },
-    sent: [// the user can send request to multiple other users, we can also add the functionality to cancel the sent request to a specific friend later on
+    sent: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
+            required: true 
         }
     ],
-    friends: [// the toggle status of the friendship with other person
+    friends: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            status:['Friend','Unfriend']
+            _id: { 
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            status: {
+                type: String,
+                enum: ['Friend', 'Unfriend'],
+                default: 'Friend'
+            }
         }
     ],
-    pending: [// here response-to-request function will get executed succesfully
+    pending: [
         {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
-            status:{
-                type:String,
-                enum:['Pending','Rejected','Accepted']
+            _id: { 
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+                required: true
+            },
+            status: {
+                type: String,
+                enum: ['Pending', 'Rejected', 'Accepted'],
+                default: 'Pending'
             }
         }
     ]
-
-})
+});
